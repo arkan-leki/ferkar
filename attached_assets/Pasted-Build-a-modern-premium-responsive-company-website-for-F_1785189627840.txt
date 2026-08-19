@@ -1,0 +1,471 @@
+Build a modern, premium, responsive company website for FERKAR.
+
+ABOUT THE COMPANY
+
+Company Name:
+FERKAR
+
+Tagline:
+From Ideas to Reality
+
+Description:
+FERKAR is a technology and innovation company based in the Kurdistan Region. We create software, AI products, educational platforms, branding solutions, and digital services that help individuals and businesses grow.
+
+STYLE
+
+The website should look like Apple, Stripe, Linear, Notion, and Vercel.
+
+Requirements:
+• Minimal
+• Professional
+• Premium
+• Modern
+• Fast loading
+• Mobile-first
+• Responsive
+• Smooth animations
+• Soft shadows
+• Rounded corners
+• Beautiful typography
+• White background
+• Black text
+• Light gray sections
+• Blue accent color (#1E63FF)
+
+Use clean spacing everywhere.
+
+Do NOT make it look like a template.
+
+-------------------------------------
+
+PAGES
+
+1. Home
+
+Hero section:
+Large headline
+
+"From Ideas to Reality"
+
+Subtitle:
+
+"We build innovative technology, AI solutions, digital platforms, and business services that create real impact."
+
+Buttons:
+
+Explore Our Projects
+
+Contact Us
+
+Add animated background.
+
+Add floating geometric shapes.
+
+Add smooth scroll animations.
+
+-------------------------------------
+
+2. About
+
+Mission
+
+Vision
+
+Values
+
+Company Story
+
+Timeline
+
+-------------------------------------
+
+3. Services
+
+Create beautiful cards for:
+
+Website Development
+
+Mobile App Development
+
+AI Solutions
+
+Business Consulting
+
+Brand Identity
+
+Graphic Design
+
+Social Media Management
+
+Digital Marketing
+
+Printing & Promotional Materials
+
+Technology Solutions
+
+-------------------------------------
+
+4. Projects
+
+Display projects as premium cards.
+
+FERGA
+Education Platform
+
+Hawkar AI
+AI Learning Assistant
+
+Darmannas
+AI Medicine Platform
+
+Dalak
+AI Hairstyle Platform
+
+Gashtyar
+Travel & Local Discovery Platform
+
+By Hanar
+Gift Shop
+
+Gulzare Maily
+Event Planning
+
+Each card should include:
+
+Image
+
+Project Name
+
+Short Description
+
+Status Badge
+
+Learn More button
+
+Hover animation
+
+-------------------------------------
+
+5. Why Choose FERKAR
+
+Beautiful icon cards.
+
+Innovation
+
+Professional Team
+
+Modern Technology
+
+AI Powered
+
+Reliable Support
+
+Creative Solutions
+
+-------------------------------------
+
+6. Portfolio
+
+Project gallery
+
+Filter by:
+
+Branding
+
+Websites
+
+Apps
+
+Marketing
+
+Graphic Design
+
+-------------------------------------
+
+7. Blog
+
+Modern blog layout.
+
+Featured article
+
+Categories
+
+Search
+
+-------------------------------------
+
+8. Careers
+
+Open positions
+
+Company culture
+
+Apply button
+
+-------------------------------------
+
+9. Contact
+
+Modern contact form
+
+Email
+
+Phone
+
+WhatsApp
+
+Facebook
+
+Instagram
+
+LinkedIn
+
+Google Map placeholder
+
+-------------------------------------
+
+FOOTER
+
+Company information
+
+Quick links
+
+Services
+
+Projects
+
+Newsletter
+
+Social media icons
+
+Copyright
+
+-------------------------------------
+
+HEADER
+
+Sticky navigation
+
+Transparent while at top
+
+Changes on scroll
+
+Navigation:
+
+Home
+
+About
+
+Services
+
+Projects
+
+Portfolio
+
+Blog
+
+Careers
+
+Contact
+
+Language
+
+Theme Toggle
+
+-------------------------------------
+
+LANGUAGE
+
+Create a multilingual system.
+
+Languages:
+
+English
+
+Kurdish (Sorani)
+
+Arabic
+
+Use translation files so more languages can be added later.
+
+-------------------------------------
+
+THEME
+
+Dark Mode
+
+Light Mode
+
+Remember user preference.
+
+-------------------------------------
+
+ANIMATIONS
+
+Fade Up
+
+Slide
+
+Zoom
+
+Parallax
+
+Counters
+
+Hover effects
+
+Smooth scrolling
+
+Loading animations
+
+Page transitions
+
+-------------------------------------
+
+SEO
+
+Complete SEO optimization.
+
+Meta tags
+
+Open Graph
+
+Twitter Cards
+
+Structured Data
+
+Sitemap
+
+Robots.txt
+
+Semantic HTML
+
+Fast performance
+
+-------------------------------------
+
+ACCESSIBILITY
+
+WCAG friendly
+
+Keyboard navigation
+
+Alt text
+
+Proper contrast
+
+ARIA labels
+
+-------------------------------------
+
+ADMIN PANEL
+
+Create a secure admin dashboard where the administrator can:
+
+Manage projects
+
+Manage services
+
+Manage portfolio
+
+Manage blog posts
+
+Manage careers
+
+Manage contact messages
+
+Manage homepage content
+
+Manage company information
+
+Upload images
+
+Upload logos
+
+Manage languages
+
+Manage SEO
+
+Manage users
+
+Manage testimonials
+
+No coding required for content updates.
+
+-------------------------------------
+
+CMS
+
+Create a lightweight CMS with authentication.
+
+-------------------------------------
+
+CONTACT FORM
+
+Store submissions in database.
+
+Admin can view all submissions.
+
+-------------------------------------
+
+TECHNOLOGY
+
+Use:
+
+React
+
+Next.js
+
+TypeScript
+
+Tailwind CSS
+
+Framer Motion
+
+Lucide Icons
+
+Responsive Design
+
+Use reusable components.
+
+Clean folder structure.
+
+Clean code.
+
+-------------------------------------
+
+PERFORMANCE
+
+Lazy loading
+
+Image optimization
+
+Code splitting
+
+Fast loading
+
+Lighthouse score above 95
+
+-------------------------------------
+
+DESIGN
+
+Premium animations.
+
+Professional gradients.
+
+Glassmorphism where appropriate.
+
+Beautiful cards.
+
+Rounded corners.
+
+Elegant buttons.
+
+Modern typography.
+
+Consistent spacing.
+
+High-quality UI/UX.
+
+The final result should look like a real international technology company website, ready for production and future expansion.

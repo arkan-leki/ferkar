@@ -1,0 +1,27 @@
+kind = "web"
+previewPath = "/"
+title = "FERKAR Website"
+version = "1.0.0"
+id = "artifacts/ferkar-website"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 18727
+
+[services.development]
+run = "pnpm --filter @workspace/ferkar-website run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/ferkar-website", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/ferkar-website/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "18727"
+BASE_PATH = "/"

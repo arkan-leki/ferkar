@@ -1,0 +1,120 @@
+export default {
+  // Navigation
+  nav: {
+    home: "Home",
+    about: "About",
+    services: "Services",
+    projects: "Projects",
+    portfolio: "Portfolio",
+    blog: "Blog",
+    careers: "Careers",
+    contact: "Contact",
+    admin: "Admin",
+  },
+  
+  // Hero
+  hero: {
+    title: "From Ideas to Reality",
+    subtitle: "We build innovative technology, AI solutions, digital platforms, and business services that create real impact.",
+    exploreProjects: "Explore Our Projects",
+    contactUs: "Contact Us"
+  },
+
+  // About
+  about: {
+    title: "About FERKAR",
+    subtitle: "A technology and innovation company based in the Kurdistan Region of Iraq.",
+    mission: "Our Mission",
+    missionText: "To build software, AI products, and digital services that elevate businesses globally.",
+    vision: "Our Vision",
+    visionText: "To be the leading hub for technological innovation in the Middle East.",
+  },
+
+  // Services
+  services: {
+    title: "Our Services",
+    subtitle: "Comprehensive solutions tailored to your business needs.",
+    items: {
+      web: "Website Development",
+      app: "Mobile App Development",
+      ai: "AI Solutions",
+      consulting: "Business Consulting",
+      brand: "Brand Identity",
+      graphic: "Graphic Design",
+      social: "Social Media Management",
+      marketing: "Digital Marketing",
+      print: "Printing & Promotional Materials",
+      tech: "Technology Solutions"
+    }
+  },
+
+  // Projects
+  projects: {
+    title: "Featured Projects",
+    subtitle: "Discover the products we've built.",
+    status: {
+      live: "Live",
+      in_progress: "In Progress",
+      coming_soon: "Coming Soon"
+    },
+    viewAll: "View All Projects"
+  },
+
+  // Why Us
+  whyUs: {
+    title: "Why Choose FERKAR",
+    subtitle: "What makes us different.",
+    items: {
+      innovation: "Innovation First",
+      team: "Professional Team",
+      tech: "Modern Technology",
+      ai: "AI Powered",
+      support: "Reliable Support",
+      creative: "Creative Solutions"
+    }
+  },
+
+  // Stats
+  stats: {
+    projects: "Completed Projects",
+    clients: "Happy Clients",
+    years: "Years Experience"
+  },
+
+  // Contact
+  contact: {
+    title: "Get in Touch",
+    subtitle: "Let's discuss how we can help your business grow.",
+    form: {
+      name: "Full Name",
+      email: "Email Address",
+      phone: "Phone Number",
+      subject: "Subject",
+      message: "Message",
+      submit: "Send Message",
+      success: "Message sent successfully!",
+      error: "Failed to send message. Please try again."
+    },
+    info: {
+      address: "Address",
+      email: "Email",
+      phone: "Phone"
+    }
+  },
+
+  // Footer
+  footer: {
+    tagline: "From Ideas to Reality",
+    quickLinks: "Quick Links",
+    contact: "Contact",
+    rights: "© 2024 FERKAR. All rights reserved."
+  },
+  
+  // Common
+  common: {
+    readMore: "Read More",
+    applyNow: "Apply Now",
+    loading: "Loading...",
+    noData: "No data available."
+  }
+};
