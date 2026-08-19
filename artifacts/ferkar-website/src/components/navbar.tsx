@@ -49,9 +49,11 @@ export const Navbar = () => {
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between">
           <Link href="/">
-            <div className="text-2xl font-bold tracking-tight text-primary cursor-pointer hover:opacity-80 transition-opacity">
-              FERKAR
-            </div>
+            <img
+              src={`${import.meta.env.BASE_URL}ferkar-logo-cropped.png`}
+              alt="FERKAR — Ideas to Reality"
+              className="h-14 w-24 object-contain cursor-pointer hover:opacity-80 transition-opacity"
+            />
           </Link>
 
           {/* Desktop Nav */}

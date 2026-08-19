@@ -15,9 +15,11 @@ export const Footer = () => {
           {/* Brand Col */}
           <div className="flex flex-col gap-4">
             <Link href="/">
-              <div className="text-2xl font-bold tracking-tight text-primary cursor-pointer">
-                {companyInfo?.name || "FERKAR"}
-              </div>
+              <img
+                src={`${import.meta.env.BASE_URL}ferkar-logo-cropped.png`}
+                alt="FERKAR — Ideas to Reality"
+                className="h-28 w-48 object-contain object-left cursor-pointer hover:opacity-80 transition-opacity"
+              />
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-sm">
               {companyInfo?.description || t.footer.tagline}

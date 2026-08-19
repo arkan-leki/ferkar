@@ -57,10 +57,6 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary text-secondary-foreground text-sm font-medium mb-8 border border-border">
-                <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse"></span>
-                FERKAR Technology Company
-              </div>
               <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
                 {t.hero.title}
               </h1>
