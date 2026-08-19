@@ -68,7 +68,7 @@ export default function Services() {
                 <ScrollReveal key={idx} delay={(idx % 3) * 0.1}>
                   <div className="group bg-card border border-border rounded-3xl p-8 hover:border-primary/40 hover:shadow-xl transition-all duration-300 h-full flex flex-col">
                     <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
-                      {React.cloneElement(getIcon(service.icon) as React.ReactElement, {
+                      {React.cloneElement(getIcon(service.icon) as React.ReactElement<{ className?: string }>, {
                         className: "w-8 h-8 group-hover:text-primary-foreground transition-colors"
                       })}
                     </div>

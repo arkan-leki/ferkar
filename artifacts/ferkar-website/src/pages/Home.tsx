@@ -162,7 +162,7 @@ export default function Home() {
                   <Link href="/services">
                     <div className="p-6 rounded-2xl bg-card border border-border hover:border-primary/50 hover:shadow-lg transition-all cursor-pointer group h-full">
                       <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                        {React.cloneElement(getServiceIcon(key) as React.ReactElement, {
+                        {React.cloneElement(getServiceIcon(key) as React.ReactElement<{ className?: string }>, {
                           className: "w-7 h-7 group-hover:text-primary-foreground transition-colors"
                         })}
                       </div>
