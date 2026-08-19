@@ -2,18 +2,12 @@ import React from "react";
 import { Link, useLocation } from "wouter";
 import { useI18n } from "@/lib/i18n";
 import { useTheme } from "@/components/theme-provider";
-import { Moon, Sun, Menu, X, ChevronDown } from "lucide-react";
+import { Moon, Sun, Menu, X } from "lucide-react";
 import { Button } from "./ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { motion, AnimatePresence } from "framer-motion";
 
 export const Navbar = () => {
-  const { t, lang, setLang, isRtl } = useI18n();
+  const { t, lang, setLang } = useI18n();
   const { theme, setTheme } = useTheme();
   const [location] = useLocation();
   const [isScrolled, setIsScrolled] = React.useState(false);
@@ -65,18 +59,24 @@ export const Navbar = () => {
           </nav>
 
           <div className="hidden lg:flex items-center gap-3">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="sm" className="gap-2">
-                  {lang.toUpperCase()} <ChevronDown className="h-4 w-4" />
+            <div className="flex items-center gap-1" aria-label="Language selection">
+              {[
+                { code: 'en', label: 'EN' },
+                { code: 'ku', label: 'KU' },
+                { code: 'ar', label: 'AR' },
+              ].map((language) => (
+                <Button
+                  key={language.code}
+                  variant={lang === language.code ? "default" : "ghost"}
+                  size="sm"
+                  className="h-8 px-2 text-xs"
+                  onClick={() => setLang(language.code as 'en' | 'ku' | 'ar')}
+                  aria-pressed={lang === language.code}
+                >
+                  {language.label}
                 </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align={isRtl ? "start" : "end"}>
-                <DropdownMenuItem onClick={() => setLang('en')} className={lang === 'en' ? 'bg-primary/10 text-primary' : ''}>English</DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setLang('ku')} className={lang === 'ku' ? 'bg-primary/10 text-primary' : ''}>Kurdish</DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setLang('ar')} className={lang === 'ar' ? 'bg-primary/10 text-primary' : ''}>Arabic</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+              ))}
+            </div>
 
             <Button
               variant="ghost"
