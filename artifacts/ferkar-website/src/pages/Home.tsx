@@ -60,7 +60,7 @@ export default function Home() {
               <img
                 src={`${import.meta.env.BASE_URL}ferkar-logo-transparent.png`}
                 alt="FERKAR"
-                className="mx-auto mb-8 h-64 w-72 object-contain md:h-80 md:w-96"
+                className="mx-auto mb-8 h-80 w-80 object-contain md:h-[28rem] md:w-[32rem]"
               />
               <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
                 {t.hero.title}
