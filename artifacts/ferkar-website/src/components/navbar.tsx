@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useLocation } from "wouter";
 import { useI18n } from "@/lib/i18n";
 import { useTheme } from "@/components/theme-provider";
-import { Moon, Sun, Menu, X } from "lucide-react";
+import { Globe2, Moon, Sun, Menu, X } from "lucide-react";
 import { Button } from "./ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -34,17 +34,36 @@ export const Navbar = () => {
 
   return (
     <header
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 w-full z-50 relative transition-all duration-300 ${
         isScrolled
           ? "bg-background/90 backdrop-blur-md border-b shadow-md py-3"
           : "bg-background/70 backdrop-blur-sm py-5"
       }`}
     >
       <div className="container mx-auto px-4 md:px-6">
+        <div className="absolute left-4 top-1/2 z-10 flex -translate-y-1/2 items-center gap-1" aria-label="Language selection">
+          <Globe2 className="mr-1 h-4 w-4 text-muted-foreground" aria-hidden="true" />
+          {[
+            { code: 'en', label: 'EN' },
+            { code: 'ku', label: 'KU' },
+            { code: 'ar', label: 'AR' },
+          ].map((language) => (
+            <Button
+              key={language.code}
+              variant={lang === language.code ? "default" : "ghost"}
+              size="sm"
+              className="h-8 px-2 text-xs"
+              onClick={() => setLang(language.code as 'en' | 'ku' | 'ar')}
+              aria-pressed={lang === language.code}
+            >
+              {language.label}
+            </Button>
+          ))}
+        </div>
         <div className="flex items-center justify-between">
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-6">
+          <nav className="hidden lg:flex items-center gap-6 lg:pl-36">
             {navLinks.map((link) => (
               <Link key={link.href} href={link.href}>
                 <span
@@ -59,25 +78,6 @@ export const Navbar = () => {
           </nav>
 
           <div className="hidden lg:flex items-center gap-3">
-            <div className="flex items-center gap-1" aria-label="Language selection">
-              {[
-                { code: 'en', label: 'EN' },
-                { code: 'ku', label: 'KU' },
-                { code: 'ar', label: 'AR' },
-              ].map((language) => (
-                <Button
-                  key={language.code}
-                  variant={lang === language.code ? "default" : "ghost"}
-                  size="sm"
-                  className="h-8 px-2 text-xs"
-                  onClick={() => setLang(language.code as 'en' | 'ku' | 'ar')}
-                  aria-pressed={lang === language.code}
-                >
-                  {language.label}
-                </Button>
-              ))}
-            </div>
-
             <Button
               variant="ghost"
               size="icon"
@@ -94,7 +94,7 @@ export const Navbar = () => {
           </div>
 
           {/* Mobile menu toggle */}
-          <div className="flex lg:hidden items-center gap-2">
+          <div className="ml-auto flex items-center gap-2 lg:hidden">
             <Button
               variant="ghost"
               size="icon"

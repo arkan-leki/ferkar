@@ -58,9 +58,9 @@ export default function Home() {
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
               <img
-                src={`${import.meta.env.BASE_URL}ferkar-logo-cropped.png`}
-                alt="FERKAR — Ideas to Reality"
-                className="mx-auto mb-8 h-44 w-72 object-contain md:h-56 md:w-96"
+                src={`${import.meta.env.BASE_URL}ferkar-logo-dark.png`}
+                alt="FERKAR emblem"
+                className="mx-auto mb-8 h-44 w-72 rounded-2xl object-cover shadow-lg md:h-56 md:w-96"
               />
               <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
                 {t.hero.title}
