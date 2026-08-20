@@ -16,8 +16,8 @@ export const Footer = () => {
           <div className="flex flex-col gap-4">
             <Link href="/">
               <img
-                src={`${import.meta.env.BASE_URL}ferkar-logo-cropped.png`}
-                alt="FERKAR — Ideas to Reality"
+                src={`${import.meta.env.BASE_URL}ferkar-footer-logo.png`}
+                alt="FERKAR"
                 className="h-28 w-48 object-contain object-left cursor-pointer hover:opacity-80 transition-opacity"
               />
             </Link>
