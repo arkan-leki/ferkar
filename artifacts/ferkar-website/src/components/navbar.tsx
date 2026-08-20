@@ -1,14 +1,12 @@
 import React from "react";
 import { Link, useLocation } from "wouter";
 import { useI18n } from "@/lib/i18n";
-import { useTheme } from "@/components/theme-provider";
-import { Globe2, Moon, Sun, Menu, X } from "lucide-react";
+import { Globe2, Menu, X } from "lucide-react";
 import { Button } from "./ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 
 export const Navbar = () => {
   const { t, lang, setLang } = useI18n();
-  const { theme, setTheme } = useTheme();
   const [location] = useLocation();
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
@@ -78,16 +76,6 @@ export const Navbar = () => {
           </nav>
 
           <div className="hidden lg:flex items-center gap-3">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            >
-              <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-              <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-              <span className="sr-only">Toggle theme</span>
-            </Button>
-            
             <Link href="/admin">
               <Button variant="outline" size="sm" className="ml-2 font-mono text-xs">{t.nav.admin}</Button>
             </Link>
@@ -95,14 +83,6 @@ export const Navbar = () => {
 
           {/* Mobile menu toggle */}
           <div className="ml-auto flex items-center gap-2 lg:hidden">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            >
-              <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-              <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-            </Button>
             <Button
               variant="ghost"
               size="icon"
