@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "wouter";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useI18n } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ChevronDown, ChevronRight, Play } from "lucide-react";
@@ -18,6 +18,10 @@ export default function Home() {
   const { t, isRtl } = useI18n();
   const { data: featuredProjects } = useListFeaturedProjects();
   const { data: stats } = useGetSiteStats();
+  const prefersReducedMotion = useReducedMotion();
+  const { scrollY } = useScroll();
+  const heroContentY = useTransform(scrollY, [0, 700], [0, 110]);
+  const heroBackgroundY = useTransform(scrollY, [0, 700], [0, -90]);
 
   const getServiceIcon = (name: string): React.ReactElement<{ className?: string }> => {
     const icons: Record<string, React.ElementType> = {
@@ -45,13 +49,19 @@ export default function Home() {
         {/* Hero Section */}
         <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-background">
           {/* Animated Background */}
-          <div className="absolute inset-0 w-full h-full opacity-[0.03] dark:opacity-[0.1] pointer-events-none">
+          <motion.div
+            className="absolute inset-0 w-full h-full opacity-[0.03] dark:opacity-[0.1] pointer-events-none"
+            style={prefersReducedMotion ? undefined : { y: heroBackgroundY }}
+          >
             <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob"></div>
             <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-black rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob animation-delay-2000"></div>
             <div className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-black rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob animation-delay-4000"></div>
-          </div>
+          </motion.div>
           
-          <div className="container relative z-10 mx-auto px-4 pt-20 text-center max-w-4xl">
+          <motion.div
+            className="container relative z-10 mx-auto px-4 pt-20 text-center max-w-4xl"
+            style={prefersReducedMotion ? undefined : { y: heroContentY }}
+          >
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -87,7 +97,7 @@ export default function Home() {
                 </Link>
               </div>
             </motion.div>
-          </div>
+          </motion.div>
           
           <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
             <ChevronDown className="h-6 w-6 text-muted-foreground" />
