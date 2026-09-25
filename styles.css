@@ -199,15 +199,16 @@ header.nav.scrolled{
 }
 
 /* ---------------- scroll cues ---------------- */
+.wordmark-wrap{position:relative;display:block}
 .scroll-down{
-  position:absolute;bottom:30px;left:50%;margin-left:-23px;
-  width:46px;height:46px;border:0;border-radius:50%;cursor:pointer;
+  position:absolute;top:50%;left:50%;margin:-26px 0 0 -26px;
+  width:52px;height:52px;border:0;border-radius:50%;cursor:pointer;
   display:grid;place-items:center;color:var(--muted-foreground);
   background:var(--surface);box-shadow:var(--neo-shadow-sm);
   transition:opacity .35s,box-shadow .2s,color .2s;z-index:2;
   animation:cueBob 2.2s ease-in-out infinite
 }
-.scroll-down svg{width:19px;height:19px}
+.scroll-down svg{width:21px;height:21px}
 .scroll-down:hover{box-shadow:var(--neo-inset-sm);color:var(--gold)}
 .scroll-down.hide{opacity:0;pointer-events:none}
 @keyframes cueBob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
