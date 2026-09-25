@@ -50,7 +50,7 @@ const T = {
     bioHazhar:"Brand design, marketing and business development — the side that finds the clients, shapes the offer, and makes the product look and sound like it belongs.",
     cBrand:"Brand identity", cUi:"UI design", cMktg:"Marketing", cBiz:"Business development",
     growT:"Growing:", growD:"More team members will be added here as Ferkar grows — each with their own section, the same way these two are split.",
-    ctKicker:"Get In Touch", ctH2:"Ready to build something?",
+    ctKicker:"Get In Touch", ctaTitle:"Talk to us directly", ctaSub:"No forms, no waiting. Message us on WhatsApp and you\u2019ll usually get an answer the same day.", ctaWa:"WhatsApp", ctaWaSub:"Fastest — message us now", ctaMail:"Email", ctH2:"Ready to build something?",
     ctSub:"Tell us about your idea. We'll come back with a clear plan — the scope, the timeline and the cost, in plain language.",
     ctLoc:"Kalar Mall, Kalar, Sulaymaniyah, Iraq", mapName:"Kalar Mall", mapOpen:"Open in Maps", mapDir:"Get directions", ctReply:"Reply within 24 hours",
     fName:"Your Name", fEmail:"Email Address", fMsg:"Tell us about your project", fSend:"Send Message",
@@ -104,7 +104,7 @@ const T = {
     bioHazhar:"دیزاینی براند، بازاڕگەری و گەشەپێدانی بازرگانی — ئەو لایەنەی کڕیار دەدۆزێتەوە و بەرهەمەکە وا دەکات شایستە دەربکەوێت.",
     cBrand:"ناسنامەی براند", cUi:"دیزاینی UI", cMktg:"بازاڕگەری", cBiz:"گەشەپێدانی بازرگانی",
     growT:"گەشەکردن:", growD:"ئەندامی زیاتری تیم لێرە زیاد دەکرێن کاتێک فێرکار گەشە دەکات.",
-    ctKicker:"پەیوەندیمان پێوە بکە", ctH2:"ئامادەیت شتێک بنیاد بنێیت؟",
+    ctKicker:"پەیوەندیمان پێوە بکە", ctaTitle:"ڕاستەوخۆ قسەمان لەگەڵ بکە", ctaSub:"فۆرم نییە، چاوەڕوانی نییە. لە واتساپ پەیامێکمان بۆ بنێرە — زۆرجار هەمان ڕۆژ وەڵام دەگریتەوە.", ctaWa:"واتساپ", ctaWaSub:"خێراترین — ئێستا پەیام بنێرە", ctaMail:"ئیمەیڵ", ctH2:"ئامادەیت شتێک بنیاد بنێیت؟",
     ctSub:"بیرۆکەکەت بۆمان بنێرە. بە پلانێکی ڕوون دەگەڕێینەوە — ئاست، کات و تێچوو، بە زمانی سادە.",
     ctLoc:"کەلار مۆڵ، کەلار، سلێمانی، عێراق", mapName:"کەلار مۆڵ", mapOpen:"لە نەخشە بیکەرەوە", mapDir:"ڕێنمایی بگەڕێ", ctReply:"وەڵام لە ماوەی ٢٤ کاتژمێر",
     fName:"ناوت", fEmail:"ئیمەیڵ", fMsg:"دەربارەی پڕۆژەکەت بۆمان بنێرە", fSend:"نامە بنێرە",
@@ -158,7 +158,7 @@ const T = {
     bioHazhar:"تصميم الهوية والتسويق وتطوير الأعمال — الجانب الذي يجد العملاء ويشكّل العرض ويجعل المنتج يبدو كما ينبغي.",
     cBrand:"الهوية البصرية", cUi:"تصميم الواجهات", cMktg:"التسويق", cBiz:"تطوير الأعمال",
     growT:"في نمو:", growD:"سيُضاف أعضاء جدد إلى الفريق هنا مع نمو فيركار.",
-    ctKicker:"تواصل معنا", ctH2:"جاهز لبناء شيء؟",
+    ctKicker:"تواصل معنا", ctaTitle:"تحدّث إلينا مباشرة", ctaSub:"لا نماذج ولا انتظار. راسلنا على واتساب وستحصل على رد في الغالب في اليوم نفسه.", ctaWa:"واتساب", ctaWaSub:"الأسرع — راسلنا الآن", ctaMail:"البريد الإلكتروني", ctH2:"جاهز لبناء شيء؟",
     ctSub:"أخبرنا عن فكرتك. سنعود إليك بخطة واضحة — النطاق والمدة والتكلفة، بلغة بسيطة.",
     ctLoc:"مول كلار، كلار، السليمانية، العراق", mapName:"مول كلار", mapOpen:"افتح في الخرائط", mapDir:"احصل على الاتجاهات", ctReply:"الرد خلال ٢٤ ساعة",
     fName:"الاسم", fEmail:"البريد الإلكتروني", fMsg:"أخبرنا عن مشروعك", fSend:"إرسال",
@@ -168,6 +168,16 @@ const T = {
 };
 
 const RTL = ["ku", "ar"];
+
+const WA_NUMBER = "9647706947874";
+const WA_MSG = {
+  en: "Hi Ferkar, I'd like to talk about a project.",
+  ku: "سڵاو فێرکار، دەمەوە لەبارەی پڕۆژەیەک قسە بکەم.",
+  ar: "مرحباً فيركار، أريد التحدث عن مشروع."
+};
+const MAIL_SUBJECT = {
+  en: "Project enquiry", ku: "داواکاری پڕۆژە", ar: "استفسار عن مشروع"
+};
 
 function apply(lang){
   const dict = T[lang];
@@ -194,6 +204,12 @@ function apply(lang){
 
   document.querySelectorAll("[data-set]").forEach(b =>
     b.setAttribute("aria-pressed", String(b.dataset.set === lang)));
+
+  // contact CTAs follow the language, so the message arrives in the visitor's own words
+  const wa = document.getElementById("waMain");
+  if (wa) wa.href = "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(WA_MSG[lang] || WA_MSG.en);
+  const mail = document.getElementById("mailMain");
+  if (mail) mail.href = "mailto:info@ferga.app?subject=" + encodeURIComponent(MAIL_SUBJECT[lang] || MAIL_SUBJECT.en);
 
   try { localStorage.setItem("ferkar_lang", lang); } catch(e){}
 }

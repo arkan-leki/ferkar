@@ -356,6 +356,30 @@ a.live:hover{text-decoration:underline}
   .about-media{order:-1}
 }
 
+/* ---------------- contact CTAs ---------------- */
+.cta-card{
+  background:var(--card);border-radius:var(--radius-lg);padding:34px;
+  box-shadow:var(--neo-shadow-lg);display:flex;flex-direction:column;gap:14px
+}
+.cta-card h3{margin-bottom:.1em}
+.cta-card > p{margin-bottom:12px;font-size:.95rem}
+.btn-cta{
+  display:flex;align-items:center;gap:15px;padding:17px 22px;border-radius:var(--radius);
+  font-family:var(--font-sans);text-decoration:none;transition:transform .18s,box-shadow .18s
+}
+.btn-cta .cta-ico{width:27px;height:27px;flex:0 0 auto}
+.btn-cta b{display:block;font-size:1.02rem;font-weight:800;line-height:1.3}
+.btn-cta em{display:block;font-style:normal;font-size:.82rem;opacity:.75;line-height:1.3}
+.btn-wa{background:#25D366;color:#06301a;box-shadow:var(--neo-shadow-sm)}
+.btn-wa:hover{transform:translateY(-2px);box-shadow:var(--neo-shadow)}
+.btn-mail{background:var(--surface);color:var(--foreground);box-shadow:var(--neo-shadow-sm)}
+.btn-mail:hover{transform:translateY(-2px);box-shadow:var(--neo-shadow)}
+
+@media(max-width:900px){
+  .cta-card{padding:26px}
+  .btn-cta{padding:15px 18px}
+}
+
 /* ---------------- mini map ---------------- */
 .map-card{
   grid-column:1/-1;margin-top:34px;background:var(--card);border-radius:var(--radius-lg);

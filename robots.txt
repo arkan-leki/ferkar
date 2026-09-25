@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://arkan-leki.github.io/ferkar/sitemap.xml
