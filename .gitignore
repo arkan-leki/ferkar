@@ -1,0 +1,14 @@
+# Screenshots and test renders used while building — not part of the site
+.preview/
+*.preview.png
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.idea/
+.vscode/
+
+# local scratch
+*.log
