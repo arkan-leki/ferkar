@@ -91,15 +91,18 @@ export default {
       phone: "Phone Number",
       subject: "Subject",
       message: "Message",
-      submit: "Send Message",
-      success: "Message sent successfully!",
-      error: "Failed to send message. Please try again.",
-      successTitle: "Success",
+      submit: "Save and open WhatsApp",
+      success: "Your inquiry was saved. Send the prepared WhatsApp message to contact us.",
+      error: "Failed to save your inquiry. Please try again.",
+      successTitle: "Inquiry saved",
       errorTitle: "Error",
       nameError: "Name must be at least 2 characters",
       emailError: "Please enter a valid email address",
       subjectError: "Subject is required",
-      messageError: "Message must be at least 10 characters"
+      messageError: "Message must be at least 10 characters",
+      whatsappIntro: "Hello FERKAR, I submitted a project inquiry.",
+      phoneNotProvided: "Not provided",
+      whatsappFollowUp: "After saving, WhatsApp will open with your inquiry ready. Review it and tap Send to contact us."
     },
     info: {
       title: "Contact Information",
@@ -107,7 +110,7 @@ export default {
       phone: "Phone",
       whatsapp: "WhatsApp",
       sendMessage: "Send us a message",
-      sending: "Sending..."
+      sending: "Saving..."
     }
   },
 

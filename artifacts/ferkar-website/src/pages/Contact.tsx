@@ -44,6 +44,11 @@ export default function Contact() {
   });
 
   const onSubmit = async (data: ContactFormValues) => {
+    const whatsappWindow = window.open("about:blank", "_blank");
+    if (whatsappWindow) {
+      whatsappWindow.opener = null;
+    }
+
     try {
       await submitContact.mutateAsync({ data });
       toast({
@@ -51,7 +56,24 @@ export default function Contact() {
         description: t.contact.form.success,
       });
       reset();
+
+      const whatsappMessage = [
+        t.contact.form.whatsappIntro,
+        `${t.contact.form.name}: ${data.name}`,
+        `${t.contact.form.email}: ${data.email}`,
+        `${t.contact.form.phone}: ${data.phone || t.contact.form.phoneNotProvided}`,
+        `${t.contact.form.subject}: ${data.subject}`,
+        `${t.contact.form.message}: ${data.message}`,
+      ].join("\n");
+      const whatsappUrl = `${publicContact.whatsappHref}?text=${encodeURIComponent(whatsappMessage)}`;
+
+      if (whatsappWindow) {
+        whatsappWindow.location.href = whatsappUrl;
+      } else {
+        window.location.href = whatsappUrl;
+      }
     } catch (error) {
+      whatsappWindow?.close();
       toast({
         variant: "destructive",
         title: t.contact.form.errorTitle,
@@ -130,6 +152,9 @@ export default function Contact() {
               <ScrollReveal direction="left" className="lg:col-span-2">
                 <div className="bg-card border border-border rounded-3xl p-8 md:p-10 shadow-sm h-full">
                   <h3 className="text-3xl font-bold mb-8">{t.contact.info.sendMessage}</h3>
+                  <p className="text-sm text-muted-foreground -mt-5 mb-6">
+                    {t.contact.form.whatsappFollowUp}
+                  </p>
                   
                   <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
