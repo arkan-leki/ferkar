@@ -1,15 +1,16 @@
-# [Project name]
+# FERKAR Website
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+Multilingual company website for FERKAR, a technology and digital services business.
 
 ## Run & Operate
 
-- `pnpm --filter @workspace/api-server run dev` — run the API server (port 5000)
+- `pnpm --filter @workspace/ferkar-website run dev` — run the React + Vite website
+- `pnpm --filter @workspace/api-server run dev` — run the Express API server
 - `pnpm run typecheck` — full typecheck across all packages
 - `pnpm run build` — typecheck + build all packages
 - `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from the OpenAPI spec
 - `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
-- Required env: `DATABASE_URL` — Postgres connection string
+- Required environment: `DATABASE_URL` for PostgreSQL; `PORT` and `BASE_PATH` are supplied to artifact services by Replit.
 
 ## Stack
 
@@ -22,7 +23,10 @@ _Replace the heading above with the project's name, and this line with one sente
 
 ## Where things live
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+- `artifacts/ferkar-website` — React + Vite website and English, Arabic, and Sorani Kurdish translations
+- `artifacts/api-server` — Express API
+- `lib/db` — PostgreSQL connection and Drizzle schema
+- `lib/api-spec` — OpenAPI contract and generated API clients/schemas
 
 ## Architecture decisions
 

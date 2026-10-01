@@ -28,7 +28,7 @@ router.post("/auth/login", async (req, res): Promise<void> => {
     return;
   }
 
-  (req.session as Record<string, unknown>).userId = user.id;
+  req.session.userId = user.id;
   res.json({ user: { id: user.id, email: user.email, name: user.name } });
 });
 
@@ -39,7 +39,7 @@ router.post("/auth/logout", async (req, res): Promise<void> => {
 });
 
 router.get("/auth/me", async (req, res): Promise<void> => {
-  const userId = (req.session as Record<string, unknown>).userId as number | undefined;
+  const userId = req.session.userId;
   if (!userId) {
     res.status(401).json({ error: "Not authenticated" });
     return;
