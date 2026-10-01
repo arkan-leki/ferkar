@@ -1,7 +1,8 @@
 import { Link } from "wouter";
 import { useI18n } from "@/lib/i18n";
-import { Facebook, Instagram, Linkedin, MapPin, Mail, Phone } from "lucide-react";
+import { Facebook, Instagram, Linkedin, MapPin, Phone, MessageCircle } from "lucide-react";
 import { useGetCompanyInfo } from "@workspace/api-client-react";
+import { publicContact } from "@/lib/contact";
 
 export const Footer = () => {
   const { t } = useI18n();
@@ -90,15 +91,15 @@ export const Footer = () => {
                 <span>{companyInfo?.address || "Kurdistan Region, Iraq"}</span>
               </li>
               <li className="flex items-center gap-3 text-sm text-muted-foreground">
-                <Mail className="h-5 w-5 text-primary shrink-0" />
-                <a href={`mailto:${companyInfo?.email || "info@ferkar.com"}`} className="hover:text-primary transition-colors">
-                  {companyInfo?.email || "info@ferkar.com"}
+                <Phone className="h-5 w-5 text-primary shrink-0" />
+                <a href={`tel:${publicContact.phoneHref}`} className="hover:text-primary transition-colors" dir="ltr">
+                  {publicContact.phoneDisplay}
                 </a>
               </li>
               <li className="flex items-center gap-3 text-sm text-muted-foreground">
-                <Phone className="h-5 w-5 text-primary shrink-0" />
-                <a href={`tel:${companyInfo?.phone || "+964 000 000 0000"}`} className="hover:text-primary transition-colors" dir="ltr">
-                  {companyInfo?.phone || "+964 000 000 0000"}
+                <MessageCircle className="h-5 w-5 text-primary shrink-0" />
+                <a href={publicContact.whatsappHref} target="_blank" rel="noreferrer" className="hover:text-primary transition-colors">
+                  {t.contact.info.whatsapp}
                 </a>
               </li>
             </ul>

@@ -93,12 +93,21 @@ export default {
       message: "Message",
       submit: "Send Message",
       success: "Message sent successfully!",
-      error: "Failed to send message. Please try again."
+      error: "Failed to send message. Please try again.",
+      successTitle: "Success",
+      errorTitle: "Error",
+      nameError: "Name must be at least 2 characters",
+      emailError: "Please enter a valid email address",
+      subjectError: "Subject is required",
+      messageError: "Message must be at least 10 characters"
     },
     info: {
+      title: "Contact Information",
       address: "Address",
-      email: "Email",
-      phone: "Phone"
+      phone: "Phone",
+      whatsapp: "WhatsApp",
+      sendMessage: "Send us a message",
+      sending: "Sending..."
     }
   },
 

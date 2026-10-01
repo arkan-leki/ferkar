@@ -6,28 +6,38 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { MapPin, Mail, Phone } from "lucide-react";
+import { MapPin, Phone, MessageCircle } from "lucide-react";
 import { useGetCompanyInfo, useSubmitContact } from "@workspace/api-client-react";
+import { publicContact } from "@/lib/contact";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useToast } from "@/components/ui/use-toast";
 
-const contactSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Invalid email address"),
-  phone: z.string().optional(),
-  subject: z.string().min(2, "Subject is required"),
-  message: z.string().min(10, "Message must be at least 10 characters"),
-});
-
-type ContactFormValues = z.infer<typeof contactSchema>;
+type ContactFormValues = {
+  name: string;
+  email: string;
+  phone?: string;
+  subject: string;
+  message: string;
+};
 
 export default function Contact() {
   const { t } = useI18n();
   const { data: companyInfo } = useGetCompanyInfo();
   const submitContact = useSubmitContact();
   const { toast } = useToast();
+  const contactSchema = React.useMemo(
+    () =>
+      z.object({
+        name: z.string().min(2, t.contact.form.nameError),
+        email: z.string().email(t.contact.form.emailError),
+        phone: z.string().optional(),
+        subject: z.string().min(2, t.contact.form.subjectError),
+        message: z.string().min(10, t.contact.form.messageError),
+      }),
+    [t],
+  );
 
   const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<ContactFormValues>({
     resolver: zodResolver(contactSchema),
@@ -37,14 +47,14 @@ export default function Contact() {
     try {
       await submitContact.mutateAsync({ data });
       toast({
-        title: "Success",
+        title: t.contact.form.successTitle,
         description: t.contact.form.success,
       });
       reset();
     } catch (error) {
       toast({
         variant: "destructive",
-        title: "Error",
+        title: t.contact.form.errorTitle,
         description: t.contact.form.error,
       });
     }
@@ -69,7 +79,7 @@ export default function Contact() {
               {/* Contact Info */}
               <ScrollReveal direction="right" className="lg:col-span-1 space-y-8">
                 <div className="bg-card border border-border rounded-3xl p-8 shadow-sm">
-                  <h3 className="text-2xl font-bold mb-8">Contact Information</h3>
+                  <h3 className="text-2xl font-bold mb-8">{t.contact.info.title}</h3>
                   
                   <div className="space-y-6">
                     <div className="flex items-start gap-4">
@@ -84,30 +94,25 @@ export default function Contact() {
                     
                     <div className="flex items-start gap-4">
                       <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                        <Mail className="w-6 h-6 text-primary" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold mb-1">{t.contact.info.email}</h4>
-                        <a href={`mailto:${companyInfo?.email}`} className="text-muted-foreground hover:text-primary transition-colors">
-                          {companyInfo?.email || "info@ferkar.com"}
-                        </a>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                         <Phone className="w-6 h-6 text-primary" />
                       </div>
                       <div>
                         <h4 className="font-semibold mb-1">{t.contact.info.phone}</h4>
-                        <a href={`tel:${companyInfo?.phone}`} className="text-muted-foreground hover:text-primary transition-colors block" dir="ltr">
-                          {companyInfo?.phone || "+964 000 000 0000"}
+                        <a href={`tel:${publicContact.phoneHref}`} className="text-muted-foreground hover:text-primary transition-colors block" dir="ltr">
+                          {publicContact.phoneDisplay}
                         </a>
-                        {companyInfo?.whatsapp && (
-                          <a href={`https://wa.me/${companyInfo.whatsapp.replace(/[^0-9]/g, '')}`} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary transition-colors text-sm mt-1 block">
-                            WhatsApp Available
-                          </a>
-                        )}
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                        <MessageCircle className="w-6 h-6 text-primary" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold mb-1">{t.contact.info.whatsapp}</h4>
+                        <a href={publicContact.whatsappHref} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary transition-colors" dir="ltr">
+                          {publicContact.phoneDisplay}
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -124,7 +129,7 @@ export default function Contact() {
               {/* Contact Form */}
               <ScrollReveal direction="left" className="lg:col-span-2">
                 <div className="bg-card border border-border rounded-3xl p-8 md:p-10 shadow-sm h-full">
-                  <h3 className="text-3xl font-bold mb-8">Send us a message</h3>
+                  <h3 className="text-3xl font-bold mb-8">{t.contact.info.sendMessage}</h3>
                   
                   <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -165,7 +170,7 @@ export default function Contact() {
                     </div>
 
                     <Button type="submit" size="lg" className="w-full md:w-auto h-12 px-8" disabled={isSubmitting}>
-                      {isSubmitting ? "Sending..." : t.contact.form.submit}
+                      {isSubmitting ? t.contact.info.sending : t.contact.form.submit}
                     </Button>
                   </form>
                 </div>

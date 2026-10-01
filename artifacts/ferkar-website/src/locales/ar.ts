@@ -78,12 +78,21 @@ export default {
       message: "الرسالة",
       submit: "إرسال الرسالة",
       success: "تم إرسال الرسالة بنجاح!",
-      error: "فشل إرسال الرسالة. يرجى المحاولة مرة أخرى."
+      error: "فشل إرسال الرسالة. يرجى المحاولة مرة أخرى.",
+      successTitle: "تم بنجاح",
+      errorTitle: "خطأ",
+      nameError: "يجب ألا يقل الاسم عن حرفين",
+      emailError: "يرجى إدخال بريد إلكتروني صحيح",
+      subjectError: "الموضوع مطلوب",
+      messageError: "يجب ألا تقل الرسالة عن 10 أحرف"
     },
     info: {
+      title: "معلومات التواصل",
       address: "العنوان",
-      email: "البريد الإلكتروني",
-      phone: "الهاتف"
+      phone: "الهاتف",
+      whatsapp: "واتساب",
+      sendMessage: "أرسل لنا رسالة",
+      sending: "جارٍ الإرسال..."
     }
   },
   footer: {
