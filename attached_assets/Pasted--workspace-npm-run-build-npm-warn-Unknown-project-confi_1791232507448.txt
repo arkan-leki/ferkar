@@ -1,0 +1,48 @@
+~/workspace$ npm run build
+npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+npm warn Unknown project config "strict-peer-dependencies". This will stop working in the next major version of npm.
+
+> workspace@0.0.0 build
+> pnpm run typecheck && pnpm -r --if-present run build
+
+
+> workspace@0.0.0 typecheck /home/runner/workspace
+> pnpm run typecheck:libs && pnpm -r --filter "./artifacts/**" --filter "./scripts" --if-present run typecheck
+
+
+> workspace@0.0.0 typecheck:libs /home/runner/workspace
+> tsc --build
+
+Scope: 4 of 9 workspace projects
+artifacts/api-server typecheck$ tsc -p tsconfig.json -…
+└─ Done in 2s
+artifacts/ferkar-website typecheck$ tsc -p tsconfig.js…
+└─ Done in 2.7s
+artifacts/mockup-sandbox typecheck$ tsc -p tsconfig.js…
+└─ Done in 2.8s
+scripts typecheck$ tsc -p tsconfig.json --noEmit
+└─ Done in 1.3s
+Scope: 8 of 9 workspace projects
+artifacts/mockup-sandbox build$ vite build
+│ failed to load config from /home/runner/workspace/ar…
+│ error during build:
+│ Error: PORT environment variable is required but was…
+│     at file:///home/runner/workspace/artifacts/mocku…
+│     at ModuleJob.run (node:internal/modules/esm/modu…
+│     at async onImport.tracePromise.__proto__ (node:i…
+│     at async loadConfigFromBundledFile (file:///home…
+│     at async bundleAndLoadConfigFile (file:///home/r…
+│     at async loadConfigFromFile (file:///home/runner…
+│     at async resolveConfig (file:///home/runner/work…
+│     at async createBuilder (file:///home/runner/work…
+│     at async CAC.<anonymous> (file:///home/runner/wo…
+└─ Failed in 262ms at /home/runner/workspace/artifacts/mockup-sandbox
+/home/runner/workspace/artifacts/mockup-sandbox:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @workspace/mockup-sandbox@2.0.0 build: `vite build`
+Exit status 1
+npm notice
+npm notice New minor version of npm available! 11.6.2 -> 11.21.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.21.0
+npm notice To update run: npm install -g npm@11.21.0
+npm notice
+~/workspace$ 
