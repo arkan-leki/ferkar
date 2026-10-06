@@ -1,4 +1,4 @@
-import fergaImage from "../../../../attached_assets/generated_images/project-ferga.jpg";
+import fergaImage from "../../../../attached_assets/photo_2026-06-04_03-18-31_1791312696276.jpg";
 
 export type ProjectCopy = {
   name: string;
