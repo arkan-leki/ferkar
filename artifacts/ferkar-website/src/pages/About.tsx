@@ -38,16 +38,16 @@ export default function About() {
                 </div>
               </ScrollReveal>
               <ScrollReveal direction="left">
-                <h2 className="text-3xl font-bold mb-6">Our Story</h2>
+                <h2 className="text-3xl font-bold mb-6">{t.about.storyTitle}</h2>
                 <div className="prose dark:prose-invert max-w-none text-muted-foreground">
                   <p className="text-lg leading-relaxed mb-4">
-                    {companyInfo?.description || "Founded in the heart of the Kurdistan Region, FERKAR started with a simple belief: that world-class technology could be built right here. We wanted to bridge the gap between global standards and local innovation."}
+                    {t.about.storyParagraph1}
                   </p>
                   <p className="text-lg leading-relaxed mb-4">
-                    Since our inception, we have partnered with businesses across various sectors — from healthcare and education to travel and retail — delivering bespoke digital solutions that drive real results.
+                    {t.about.storyParagraph2}
                   </p>
                   <p className="text-lg leading-relaxed">
-                    Our team of engineers, designers, and strategists are united by a common passion: turning complex problems into elegant, intuitive products. We don't just write code; we build the future.
+                    {t.about.storyParagraph3}
                   </p>
                 </div>
               </ScrollReveal>

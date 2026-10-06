@@ -24,6 +24,10 @@ export default {
   about: {
     title: "About FERKAR",
     subtitle: "A technology and innovation company based in the Kurdistan Region of Iraq.",
+    storyTitle: "Our Story",
+    storyParagraph1: "Founded in the heart of the Kurdistan Region, FERKAR started with a simple belief: that world-class technology could be built right here. We wanted to bridge the gap between global standards and local innovation.",
+    storyParagraph2: "Since our inception, we have partnered with businesses across various sectors — from healthcare and education to travel and retail — delivering bespoke digital solutions that drive real results.",
+    storyParagraph3: "Our team of engineers, designers, and strategists are united by a common passion: turning complex problems into elegant, intuitive products. We don't just write code; we build the future.",
     mission: "Our Mission",
     missionText: "To build software, AI products, and digital services that elevate businesses globally.",
     vision: "Our Vision",
