@@ -15,7 +15,7 @@ export default {
   // Hero
   hero: {
     title: "From Ideas to Reality",
-    subtitle: "We build innovative technology, AI solutions, digital platforms, and business services that create real impact.",
+    subtitle: "At FERKAR, every idea and dream becomes reality with the support of a skilled and capable team.",
     exploreProjects: "Explore Our Projects",
     contactUs: "Contact Us"
   },
