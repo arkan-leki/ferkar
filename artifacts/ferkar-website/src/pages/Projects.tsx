@@ -4,6 +4,7 @@ import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { useI18n } from "@/lib/i18n";
 import { useListProjects } from "@workspace/api-client-react";
 import { Badge } from "@/components/ui/badge";
+import { localizeProject } from "@/lib/project-localization";
 
 export default function Projects() {
   const { t } = useI18n();
@@ -20,7 +21,6 @@ export default function Projects() {
 
   // Ensure realistic thumbnails
   const fallbackImages: Record<string, string> = {
-    'FERGA': '/attached_assets/generated_images/project-ferga.jpg',
     'Hawkar AI': '/attached_assets/generated_images/project-hawkar.jpg',
     'Darmannas': '/attached_assets/generated_images/project-darmannas.jpg',
     'Dalak': '/attached_assets/generated_images/project-dalak.jpg',
@@ -45,14 +45,16 @@ export default function Projects() {
               <div className="text-center py-20 text-muted-foreground">{t.common.loading}</div>
             ) : projects && projects.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                {projects.map((project, idx) => (
+                {projects.map((project, idx) => {
+                  const localizedProject = localizeProject(project, t.projects.ferga);
+                  return (
                   <ScrollReveal key={project.id} delay={(idx % 2) * 0.1}>
                     <div className="group relative rounded-3xl overflow-hidden bg-card border border-border shadow-sm hover:shadow-xl transition-all duration-300">
                       <div className="aspect-video relative overflow-hidden bg-muted">
-                        {(project.imageUrl || fallbackImages[project.name]) ? (
+                        {(localizedProject.imageUrl || fallbackImages[project.name]) ? (
                           <img 
-                            src={project.imageUrl || fallbackImages[project.name]} 
-                            alt={project.name} 
+                            src={localizedProject.imageUrl || fallbackImages[project.name]}
+                            alt={localizedProject.name}
                             className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700" 
                           />
                         ) : (
@@ -62,24 +64,25 @@ export default function Projects() {
                         )}
                         <div className="absolute top-6 left-6 flex gap-2">
                           <Badge variant="secondary" className="px-3 py-1 text-xs font-semibold uppercase tracking-wider backdrop-blur bg-background/80">
-                            {project.category}
+                            {localizedProject.category}
                           </Badge>
                         </div>
                       </div>
                       <div className="p-8">
                         <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
-                          <h3 className="text-2xl font-bold group-hover:text-primary transition-colors">{project.name}</h3>
+                          <h3 className="text-2xl font-bold group-hover:text-primary transition-colors">{localizedProject.name}</h3>
                           <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${getStatusColor(project.status)}`}>
                             {t.projects.status[project.status as keyof typeof t.projects.status] || project.status}
                           </span>
                         </div>
                         <p className="text-muted-foreground text-lg mb-6 line-clamp-3">
-                          {project.description}
+                          {localizedProject.description}
                         </p>
                       </div>
                     </div>
                   </ScrollReveal>
-                ))}
+                  );
+                })}
               </div>
             ) : (
               <div className="text-center py-20 text-muted-foreground border rounded-2xl border-dashed">

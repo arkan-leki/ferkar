@@ -56,6 +56,11 @@ export default {
   projects: {
     title: "Featured Projects",
     subtitle: "Discover the products we've built.",
+    ferga: {
+      name: "FERGA",
+      category: "Education",
+      description: "The first educational platform in Kurdistan and Iraq—and the largest marketplace for learning your favorite subject. Find the best teacher, course, school, or center."
+    },
     status: {
       live: "Live",
       in_progress: "In Progress",

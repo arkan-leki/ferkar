@@ -7,6 +7,7 @@ import { ArrowRight, ChevronDown, ChevronRight, Play } from "lucide-react";
 import { PageTransition } from "@/components/ui/page-transition";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { useListFeaturedProjects, useGetSiteStats } from "@workspace/api-client-react";
+import { localizeProject } from "@/lib/project-localization";
 
 import { 
   Globe, Smartphone, Brain, Briefcase, 
@@ -123,12 +124,14 @@ export default function Home() {
             </ScrollReveal>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {featuredProjects?.slice(0,3).map((project, idx) => (
+              {featuredProjects?.slice(0,3).map((project, idx) => {
+                const localizedProject = localizeProject(project, t.projects.ferga);
+                return (
                 <ScrollReveal key={project.id} delay={idx * 0.1}>
                   <div className="group relative rounded-2xl overflow-hidden bg-background border border-border shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                     <div className="aspect-[4/3] relative overflow-hidden bg-muted">
-                      {project.imageUrl ? (
-                        <img src={project.imageUrl} alt={project.name} className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500" />
+                      {localizedProject.imageUrl ? (
+                        <img src={localizedProject.imageUrl} alt={localizedProject.name} className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500" />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center bg-secondary text-muted-foreground font-mono">
                           [Project Image]
@@ -136,23 +139,24 @@ export default function Home() {
                       )}
                       <div className="absolute top-4 left-4">
                         <span className="px-3 py-1 rounded-full bg-background/90 backdrop-blur text-xs font-medium border border-border">
-                          {project.category}
+                          {localizedProject.category}
                         </span>
                       </div>
                     </div>
                     <div className="p-6">
                       <div className="flex items-center justify-between mb-3">
-                        <h3 className="text-xl font-bold">{project.name}</h3>
+                        <h3 className="text-xl font-bold">{localizedProject.name}</h3>
                         <span className="flex items-center gap-1.5 text-xs font-medium text-emerald-600 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-950 px-2 py-1 rounded-md">
                           <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 dark:bg-emerald-400 animate-pulse"></span>
                           {t.projects.status[project.status as keyof typeof t.projects.status]}
                         </span>
                       </div>
-                      <p className="text-muted-foreground line-clamp-2">{project.description}</p>
+                      <p className="text-muted-foreground line-clamp-2">{localizedProject.description}</p>
                     </div>
                   </div>
                 </ScrollReveal>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
