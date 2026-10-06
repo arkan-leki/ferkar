@@ -46,7 +46,7 @@ export default function Projects() {
             ) : projects && projects.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                 {projects.map((project, idx) => {
-                  const localizedProject = localizeProject(project, t.projects.ferga);
+                  const localizedProject = localizeProject(project, t.projects);
                   return (
                   <ScrollReveal key={project.id} delay={(idx % 2) * 0.1}>
                     <div className="group relative rounded-3xl overflow-hidden bg-card border border-border shadow-sm hover:shadow-xl transition-all duration-300">
@@ -55,7 +55,7 @@ export default function Projects() {
                           <img 
                             src={localizedProject.imageUrl || fallbackImages[project.name]}
                             alt={localizedProject.name}
-                            className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700" 
+                            className={`object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ${localizedProject.name === "Poshya" ? "object-top" : ""}`}
                           />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center bg-secondary text-muted-foreground">

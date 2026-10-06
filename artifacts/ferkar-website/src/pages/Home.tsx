@@ -125,13 +125,13 @@ export default function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {featuredProjects?.slice(0,3).map((project, idx) => {
-                const localizedProject = localizeProject(project, t.projects.ferga);
+                const localizedProject = localizeProject(project, t.projects);
                 return (
                 <ScrollReveal key={project.id} delay={idx * 0.1}>
                   <div className="group relative rounded-2xl overflow-hidden bg-background border border-border shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                     <div className="aspect-[4/3] relative overflow-hidden bg-muted">
                       {localizedProject.imageUrl ? (
-                        <img src={localizedProject.imageUrl} alt={localizedProject.name} className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500" />
+                        <img src={localizedProject.imageUrl} alt={localizedProject.name} className={`object-cover w-full h-full group-hover:scale-105 transition-transform duration-500 ${localizedProject.name === "Poshya" ? "object-top" : ""}`} />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center bg-secondary text-muted-foreground font-mono">
                           [Project Image]

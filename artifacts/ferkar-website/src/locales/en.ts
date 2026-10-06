@@ -61,6 +61,11 @@ export default {
       category: "Education",
       description: "The first educational platform in Kurdistan and Iraq—and the largest marketplace for learning your favorite subject. Find the best teacher, course, school, or center."
     },
+    poshya: {
+      name: "Poshya",
+      category: "Marketplace",
+      description: "A web bazaar for discovering shops and products."
+    },
     status: {
       live: "Live",
       in_progress: "In Progress",
