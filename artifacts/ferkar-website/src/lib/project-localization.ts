@@ -16,6 +16,9 @@ export type ProjectCopies = {
   poshya: ProjectCopy;
 };
 
+// The bundled images are a FALLBACK, not an override: when the API supplies an imageUrl it
+// wins, so project artwork can be replaced from the backend without touching this file. Leave
+// imageUrl null in the API to fall back to these.
 export function localizeProject(
   project: ProjectDisplay,
   projectCopies: ProjectCopies,
@@ -23,12 +26,23 @@ export function localizeProject(
   const projectKey = project.name.trim().toLowerCase();
 
   if (projectKey === "ferga") {
-    return { ...project, ...projectCopies.ferga, imageUrl: fergaImage };
+    return { ...project, ...projectCopies.ferga, imageUrl: project.imageUrl ?? fergaImage };
   }
 
   if (projectKey === "poshya") {
-    return { ...project, ...projectCopies.poshya, imageUrl: poshyaImage };
+    return { ...project, ...projectCopies.poshya, imageUrl: project.imageUrl ?? poshyaImage };
   }
 
   return project;
+}
+
+// Project artwork served from the site's own `public/project-images` is stored as a relative
+// path ("project-images/poshya.png") so it survives being deployed under a subpath
+// (GitHub Pages serves this site from /ferkar/). Bundled imports and absolute/remote URLs are
+// already resolved, and must not be prefixed again.
+export function projectImageUrl(project: ProjectDisplay): string | null {
+  const url = project.imageUrl;
+  if (!url) return null;
+  if (url.startsWith("/") || /^https?:\/\//.test(url) || url.startsWith("data:")) return url;
+  return `${import.meta.env.BASE_URL}${url}`;
 }

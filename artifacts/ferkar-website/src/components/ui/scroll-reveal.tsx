@@ -38,7 +38,7 @@ export const ScrollReveal = ({ children, className, delay = 0, direction = "up" 
       }}
       className={className}
     >
-      <motion.div style={prefersReducedMotion ? undefined : { y: parallaxY }}>
+      <motion.div className="h-full" style={prefersReducedMotion ? undefined : { y: parallaxY }}>
         {children}
       </motion.div>
     </motion.div>

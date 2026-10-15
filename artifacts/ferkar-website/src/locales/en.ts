@@ -32,6 +32,18 @@ export default {
     missionText: "To build software, AI products, and digital services that elevate businesses globally.",
     vision: "Our Vision",
     visionText: "To be the leading hub for technological innovation in the Middle East.",
+
+    teamKicker: "The Team",
+    teamTitle: "Who you're actually working with",
+    teamSubtitle: "Small on purpose. The people who plan your project are the people who deliver it.",
+    arkanName: "Arkan M. Ameen",
+    arkanRole: "Full-Stack Developer",
+    arkanBio: "6+ years building production systems. Specialises in POS, ERP and multi-tenant platforms with true Arabic, Kurdish and Persian right-to-left support. Ships to the App Store and Google Play.",
+    hazharName: "Hazhar Akram",
+    hazharRole: "Business Consultant",
+    hazharBio: "Business development, brand design and marketing — the side that finds the clients, shapes the offer, and makes the product look and sound like it belongs.",
+    teamSkills: "Core stack",
+    teamBusiness: "Business side",
   },
 
   // Services
@@ -71,7 +83,10 @@ export default {
       in_progress: "In Progress",
       coming_soon: "Coming Soon"
     },
-    viewAll: "View All Projects"
+    viewAll: "View All Projects",
+    visitSite: "Visit site",
+    requestDemo: "Request a demo",
+    demoMessage: "Hello FERKAR, I would like a demo of",
   },
 
   // Why Us
@@ -123,6 +138,8 @@ export default {
       address: "Address",
       phone: "Phone",
       whatsapp: "WhatsApp",
+      email: "Email",
+      developer: "Developer",
       sendMessage: "Send us a message",
       sending: "Saving..."
     }

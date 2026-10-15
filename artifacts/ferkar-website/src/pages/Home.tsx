@@ -3,11 +3,12 @@ import { Link } from "wouter";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useI18n } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ChevronDown, ChevronRight, Play } from "lucide-react";
+import { ArrowRight, ChevronDown, ChevronRight, Play, ExternalLink, MessageCircle } from "lucide-react";
 import { PageTransition } from "@/components/ui/page-transition";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { useListFeaturedProjects, useGetSiteStats } from "@workspace/api-client-react";
-import { localizeProject } from "@/lib/project-localization";
+import { localizeProject, projectImageUrl } from "@/lib/project-localization";
+import { publicContact } from "@/lib/contact";
 
 import { 
   Globe, Smartphone, Brain, Briefcase, 
@@ -60,7 +61,7 @@ export default function Home() {
           </motion.div>
           
           <motion.div
-            className="container relative z-10 mx-auto px-4 pt-20 text-center max-w-4xl"
+            className="container relative z-10 mx-auto px-4 pt-24 pb-12 text-center max-w-4xl"
             style={prefersReducedMotion ? undefined : { y: heroContentY }}
           >
             <motion.div
@@ -68,21 +69,31 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
+              {/* Stacked lockup from the ferkar project (1345x1082, crisp) on tablet/desktop.
+                  On phones that lockup is ~150px wide and its bottom strapline is unreadable,
+                  so phones get the big F mark on its own (674x682) — which also avoids the
+                  "FERKAR / IDEAS TO REALITY" in the lockup repeating the heading below it.
+                  Both are sized by viewport HEIGHT so the hero always fits the screen. */}
               <img
-                src={`${import.meta.env.BASE_URL}ferkar-logo-transparent.png`}
+                src={`${import.meta.env.BASE_URL}ferkar-logo-stacked.png`}
                 alt="FERKAR"
-                className="mx-auto h-80 w-80 object-contain md:h-[28rem] md:w-[32rem] ml-[85.5705px] mr-[89.5705px] mb-[112px]"
+                className="mx-auto mb-5 hidden h-[clamp(8rem,22vh,16rem)] w-auto object-contain sm:block sm:mb-8 lg:mb-10"
               />
-              <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
+              <img
+                src={`${import.meta.env.BASE_URL}ferkar-mark.png`}
+                alt="FERKAR"
+                className="mx-auto mb-4 h-[clamp(5rem,13vh,7rem)] w-auto object-contain sm:hidden"
+              />
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 md:mb-5 leading-tight">
                 {t.hero.title}
               </h1>
-              <p className="text-xl md:text-2xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed font-semibold">
+              <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-6 md:mb-8 max-w-2xl mx-auto leading-relaxed font-semibold">
                 {t.hero.subtitle}
               </p>
               
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
                 <Link href="/projects">
-                  <Button size="lg" className="w-full sm:w-auto text-md h-14 px-8 group">
+                  <Button size="lg" className="w-full sm:w-auto text-sm sm:text-base h-12 sm:h-14 px-6 sm:px-8 group">
                     {t.hero.exploreProjects}
                     {isRtl ? (
                       <ArrowRight className="mr-2 h-4 w-4 rotate-180 group-hover:-translate-x-1 transition-transform" />
@@ -92,7 +103,7 @@ export default function Home() {
                   </Button>
                 </Link>
                 <Link href="/contact">
-                  <Button size="lg" variant="outline" className="w-full sm:w-auto text-md h-14 px-8 border-2">
+                  <Button size="lg" variant="outline" className="w-full sm:w-auto text-sm sm:text-base h-12 sm:h-14 px-6 sm:px-8 border-2">
                     {t.hero.contactUs}
                   </Button>
                 </Link>
@@ -127,11 +138,11 @@ export default function Home() {
               {featuredProjects?.slice(0,3).map((project, idx) => {
                 const localizedProject = localizeProject(project, t.projects);
                 return (
-                <ScrollReveal key={project.id} delay={idx * 0.1}>
-                  <div className="group relative rounded-2xl overflow-hidden bg-background border border-border shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <ScrollReveal key={project.id} delay={idx * 0.1} className="h-full">
+                  <div className="group relative rounded-2xl overflow-hidden bg-background border border-border shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
                     <div className="aspect-[4/3] relative overflow-hidden bg-muted">
-                      {localizedProject.imageUrl ? (
-                        <img src={localizedProject.imageUrl} alt={localizedProject.name} className={`object-cover w-full h-full group-hover:scale-105 transition-transform duration-500 ${localizedProject.name === "Poshya" ? "object-top" : ""}`} />
+                      {projectImageUrl(localizedProject) ? (
+                        <img src={projectImageUrl(localizedProject)!} alt={localizedProject.name} className={`object-cover w-full h-full group-hover:scale-105 transition-transform duration-500 ${localizedProject.name === "Poshya" ? "object-top" : ""}`} />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center bg-secondary text-muted-foreground font-mono">
                           [Project Image]
@@ -143,7 +154,7 @@ export default function Home() {
                         </span>
                       </div>
                     </div>
-                    <div className="p-6">
+                    <div className="p-6 flex flex-col flex-1">
                       <div className="flex items-center justify-between mb-3">
                         <h3 className="text-xl font-bold">{localizedProject.name}</h3>
                         <span className="flex items-center gap-1.5 text-xs font-medium text-emerald-600 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-950 px-2 py-1 rounded-md">
@@ -152,6 +163,32 @@ export default function Home() {
                         </span>
                       </div>
                       <p className="text-muted-foreground line-clamp-2">{localizedProject.description}</p>
+
+                      <div className="mt-auto pt-4">
+                        {(project as typeof project & { websiteUrl?: string | null }).websiteUrl ? (
+                          <a
+                            href={(project as typeof project & { websiteUrl?: string | null }).websiteUrl as string}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex items-center gap-2 text-sm font-semibold text-primary transition-all hover:gap-3"
+                          >
+                            {t.projects.visitSite}
+                            <ExternalLink className="h-4 w-4" />
+                          </a>
+                        ) : (
+                          <a
+                            href={`${publicContact.whatsappHref}?text=${encodeURIComponent(
+                              `${t.projects.demoMessage} ${localizedProject.name}`,
+                            )}`}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex items-center gap-2 text-sm font-semibold text-primary transition-all hover:gap-3"
+                          >
+                            {t.projects.requestDemo}
+                            <MessageCircle className="h-4 w-4" />
+                          </a>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </ScrollReveal>

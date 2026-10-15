@@ -1,8 +1,8 @@
 import { Link } from "wouter";
 import { useI18n } from "@/lib/i18n";
-import { Facebook, Instagram, Linkedin, MapPin, Phone, MessageCircle } from "lucide-react";
+import { Facebook, Instagram, Linkedin, MapPin, Phone, MessageCircle, Mail } from "lucide-react";
 import { useGetCompanyInfo } from "@workspace/api-client-react";
-import { publicContact } from "@/lib/contact";
+import { publicContact, developerContact, companyEmail } from "@/lib/contact";
 
 export const Footer = () => {
   const { t } = useI18n();
@@ -44,10 +44,9 @@ export const Footer = () => {
             <ul className="space-y-3">
               {[
                 { href: "/about", label: t.nav.about },
+                { href: "/services", label: t.nav.services },
                 { href: "/projects", label: t.nav.projects },
-                { href: "/portfolio", label: t.nav.portfolio },
-                { href: "/blog", label: t.nav.blog },
-                { href: "/careers", label: t.nav.careers },
+                { href: "/contact", label: t.nav.contact },
               ].map((link) => (
                 <li key={link.href}>
                   <Link href={link.href}>
@@ -102,6 +101,18 @@ export const Footer = () => {
                   {t.contact.info.whatsapp}
                 </a>
               </li>
+              <li className="flex items-center gap-3 text-sm text-muted-foreground">
+                <Mail className="h-5 w-5 text-primary shrink-0" />
+                <a href={`mailto:${companyEmail}`} className="hover:text-primary transition-colors" dir="ltr">
+                  {companyEmail}
+                </a>
+              </li>
+              <li className="flex items-center gap-3 text-sm text-muted-foreground">
+                <MessageCircle className="h-5 w-5 text-primary shrink-0" />
+                <a href={developerContact.whatsappHref} target="_blank" rel="noreferrer" className="hover:text-primary transition-colors">
+                  {t.about.arkanName} · {t.contact.info.developer}
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -111,9 +122,6 @@ export const Footer = () => {
           <p className="text-sm text-muted-foreground">
             {t.footer.rights}
           </p>
-          <div className="flex gap-4 text-sm text-muted-foreground">
-            <Link href="/admin"><span className="hover:text-primary cursor-pointer">Admin Login</span></Link>
-          </div>
         </div>
       </div>
     </footer>

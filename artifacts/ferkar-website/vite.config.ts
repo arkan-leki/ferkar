@@ -29,6 +29,16 @@ if (!basePath) {
 
 export default defineConfig({
   base: basePath,
+  // STATIC_DATA=1 builds the site to run with no server at all: the API is answered from the
+  // JSON in src/data (see src/lib/static-api.ts). That is what makes it deployable to a static
+  // host such as GitHub Pages, and it also lets the built site run locally with `vite preview`.
+  //
+  // It has to be injected here rather than read from `import.meta.env`, because Vite only
+  // populates import.meta.env from .env files — a `VITE_*` variable exported in the shell is
+  // silently ignored, which is exactly how this flag failed the first time.
+  define: {
+    'import.meta.env.VITE_STATIC_DATA': JSON.stringify(process.env.STATIC_DATA ?? ''),
+  },
   plugins: [
     react(),
     tailwindcss(),

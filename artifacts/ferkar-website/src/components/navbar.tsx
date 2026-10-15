@@ -19,14 +19,15 @@ export const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Only pages that actually exist. `/portfolio`, `/blog` and `/careers` are declared in the
+  // locales and have API routes + DB tables behind them, but no page components were ever
+  // built — those routes are commented out in App.tsx, so linking them lands on NotFound.
+  // Add them back here the moment the pages exist.
   const navLinks = [
     { href: "/", label: t.nav.home },
     { href: "/about", label: t.nav.about },
     { href: "/services", label: t.nav.services },
     { href: "/projects", label: t.nav.projects },
-    { href: "/portfolio", label: t.nav.portfolio },
-    { href: "/blog", label: t.nav.blog },
-    { href: "/careers", label: t.nav.careers },
     { href: "/contact", label: t.nav.contact },
   ];
 
@@ -75,11 +76,8 @@ export const Navbar = () => {
             ))}
           </nav>
 
-          <div className="hidden lg:flex items-center gap-3">
-            <Link href="/admin">
-              <Button variant="outline" size="sm" className="ml-2 font-mono text-xs">{t.nav.admin}</Button>
-            </Link>
-          </div>
+          {/* The Admin button was removed: /admin is not routed (App.tsx has the admin
+              routes commented out), so it only ever rendered the 404 page. */}
 
           {/* Mobile menu toggle */}
           <div className="ml-auto flex items-center gap-2 lg:hidden">
@@ -122,9 +120,6 @@ export const Navbar = () => {
                   <Button size="sm" variant={lang === 'ku' ? 'default' : 'outline'} onClick={() => setLang('ku')}>KU</Button>
                   <Button size="sm" variant={lang === 'ar' ? 'default' : 'outline'} onClick={() => setLang('ar')}>AR</Button>
                 </div>
-                <Link href="/admin">
-                  <Button variant="outline" size="sm" onClick={() => setIsMobileMenuOpen(false)}>Admin</Button>
-                </Link>
               </div>
             </div>
           </motion.div>

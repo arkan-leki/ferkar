@@ -4,7 +4,16 @@ import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { useI18n } from "@/lib/i18n";
 import { useListProjects } from "@workspace/api-client-react";
 import { Badge } from "@/components/ui/badge";
-import { localizeProject } from "@/lib/project-localization";
+import { localizeProject, projectImageUrl } from "@/lib/project-localization";
+import { publicContact } from "@/lib/contact";
+import { ExternalLink, MessageCircle } from "lucide-react";
+
+// `websiteUrl` is carried by the API. Products we do NOT want to link directly — the ERPs,
+// which are sold rather than browsed — have it as null and ask for a demo instead, so the
+// first contact is a conversation rather than a login page.
+type ProjectWithSite = {
+  websiteUrl?: string | null;
+};
 
 export default function Projects() {
   const { t } = useI18n();
@@ -48,12 +57,12 @@ export default function Projects() {
                 {projects.map((project, idx) => {
                   const localizedProject = localizeProject(project, t.projects);
                   return (
-                  <ScrollReveal key={project.id} delay={(idx % 2) * 0.1}>
-                    <div className="group relative rounded-3xl overflow-hidden bg-card border border-border shadow-sm hover:shadow-xl transition-all duration-300">
+                  <ScrollReveal key={project.id} delay={(idx % 2) * 0.1} className="h-full">
+                    <div className="group relative rounded-3xl overflow-hidden bg-card border border-border shadow-sm hover:shadow-xl transition-all duration-300 h-full flex flex-col">
                       <div className="aspect-video relative overflow-hidden bg-muted">
-                        {(localizedProject.imageUrl || fallbackImages[project.name]) ? (
+                        {(projectImageUrl(localizedProject) || fallbackImages[project.name]) ? (
                           <img 
-                            src={localizedProject.imageUrl || fallbackImages[project.name]}
+                            src={projectImageUrl(localizedProject) || fallbackImages[project.name]!}
                             alt={localizedProject.name}
                             className={`object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ${localizedProject.name === "Poshya" ? "object-top" : ""}`}
                           />
@@ -68,7 +77,7 @@ export default function Projects() {
                           </Badge>
                         </div>
                       </div>
-                      <div className="p-8">
+                      <div className="p-8 flex flex-col flex-1">
                         <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
                           <h3 className="text-2xl font-bold group-hover:text-primary transition-colors">{localizedProject.name}</h3>
                           <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${getStatusColor(project.status)}`}>
@@ -78,6 +87,32 @@ export default function Projects() {
                         <p className="text-muted-foreground text-lg mb-6 line-clamp-3">
                           {localizedProject.description}
                         </p>
+
+                        <div className="mt-auto pt-4 border-t border-border">
+                          {(project as typeof project & ProjectWithSite).websiteUrl ? (
+                            <a
+                              href={(project as typeof project & ProjectWithSite).websiteUrl as string}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="inline-flex items-center gap-2 font-semibold text-primary transition-all hover:gap-3"
+                            >
+                              {t.projects.visitSite}
+                              <ExternalLink className="h-4 w-4" />
+                            </a>
+                          ) : (
+                            <a
+                              href={`${publicContact.whatsappHref}?text=${encodeURIComponent(
+                                `${t.projects.demoMessage} ${localizedProject.name}`,
+                              )}`}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="inline-flex items-center gap-2 font-semibold text-primary transition-all hover:gap-3"
+                            >
+                              {t.projects.requestDemo}
+                              <MessageCircle className="h-4 w-4" />
+                            </a>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </ScrollReveal>
