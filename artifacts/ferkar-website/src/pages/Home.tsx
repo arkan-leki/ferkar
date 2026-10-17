@@ -9,6 +9,7 @@ import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { useListFeaturedProjects, useGetSiteStats } from "@workspace/api-client-react";
 import { localizeProject, projectImageUrl } from "@/lib/project-localization";
 import { publicContact } from "@/lib/contact";
+import clients from "@/data/clients.json";
 
 import { 
   Globe, Smartphone, Brain, Briefcase, 
@@ -220,7 +221,7 @@ export default function Home() {
                       </div>
                       <h3 className="text-lg font-bold mb-2">{t.services.items[key as keyof typeof t.services.items]}</h3>
                       <div className="flex items-center text-sm font-medium text-primary mt-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all">
-                        Explore <ArrowRight className={`w-4 h-4 ml-1 ${isRtl ? "rotate-180" : ""}`} />
+                        Explore <ArrowRight className={`w-4 h-4 ${isRtl ? "mr-1 rotate-180" : "ml-1"}`} />
                       </div>
                     </div>
                   </Link>
@@ -274,7 +275,7 @@ export default function Home() {
             <div className="grid grid-cols-2 md:grid-cols-3 gap-8 text-center divide-x divide-border">
               <ScrollReveal delay={0.1}>
                 <div>
-                  <div className="text-4xl md:text-6xl font-black text-primary mb-2">
+                  <div className="text-4xl md:text-6xl font-black text-primary mb-2" dir="ltr">
                     {stats?.projectCount ? stats.projectCount + 10 : 25}+
                   </div>
                   <div className="text-sm font-medium text-muted-foreground uppercase tracking-wider">{t.stats.projects}</div>
@@ -282,17 +283,69 @@ export default function Home() {
               </ScrollReveal>
               <ScrollReveal delay={0.2}>
                 <div>
-                  <div className="text-4xl md:text-6xl font-black text-primary mb-2">40+</div>
+                  <div className="text-4xl md:text-6xl font-black text-primary mb-2" dir="ltr">40+</div>
                   <div className="text-sm font-medium text-muted-foreground uppercase tracking-wider">{t.stats.clients}</div>
                 </div>
               </ScrollReveal>
               <ScrollReveal delay={0.3} className="hidden md:block">
                 <div>
-                  <div className="text-4xl md:text-6xl font-black text-primary mb-2">5+</div>
+                  <div className="text-4xl md:text-6xl font-black text-primary mb-2" dir="ltr">5+</div>
                   <div className="text-sm font-medium text-muted-foreground uppercase tracking-wider">{t.stats.years}</div>
                 </div>
               </ScrollReveal>
             </div>
+          </div>
+        </section>
+
+        {/* Trusted by — client logos */}
+        <section className="py-20 bg-background border-y border-border">
+          <div className="container mx-auto px-4">
+            <ScrollReveal>
+              <div className="text-center max-w-2xl mx-auto mb-12">
+                <span className="text-sm font-semibold uppercase tracking-wider text-primary">
+                  {t.clients.kicker}
+                </span>
+                <h2 className="text-3xl md:text-4xl font-bold mt-3 mb-4">{t.clients.title}</h2>
+                <p className="text-muted-foreground leading-relaxed">{t.clients.subtitle}</p>
+              </div>
+            </ScrollReveal>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+              {clients.map((client, idx) => (
+                <ScrollReveal key={client.name} delay={(idx % 5) * 0.05} className="h-full">
+                  {/* Logo + name. These are local businesses, not global brands, so the mark
+                      alone is not recognisable at this size — the label is what makes the strip
+                      mean something to a visitor who has never been to Kalar. */}
+                  <div className="group flex h-full min-h-[7.5rem] flex-col items-center justify-center gap-2.5 rounded-2xl border border-border bg-card px-4 py-4 transition-all hover:border-primary/40 hover:shadow-md">
+                    <img
+                      src={`${import.meta.env.BASE_URL}client-logos/${client.logo}`}
+                      alt={client.name}
+                      title={client.name}
+                      loading="lazy"
+                      className="max-h-12 w-auto max-w-full object-contain opacity-80 transition-all duration-300 group-hover:scale-105 group-hover:opacity-100"
+                    />
+                    <div className="text-center text-[11px] font-semibold uppercase leading-tight tracking-wider text-muted-foreground">
+                      {client.name}
+                    </div>
+                  </div>
+                </ScrollReveal>
+              ))}
+            </div>
+
+            <ScrollReveal>
+              <div className="text-center mt-10">
+                <Link href="/projects">
+                  <Button variant="ghost" className="group">
+                    {t.clients.seeAll}
+                    {isRtl ? (
+                      <ArrowRight className="mr-2 h-4 w-4 rotate-180 group-hover:-translate-x-1 transition-transform" />
+                    ) : (
+                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    )}
+                  </Button>
+                </Link>
+              </div>
+            </ScrollReveal>
           </div>
         </section>
 

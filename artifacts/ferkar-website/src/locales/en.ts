@@ -110,6 +110,14 @@ export default {
     years: "Years Experience"
   },
 
+  // Trusted by / clients
+  clients: {
+    kicker: "Trusted by",
+    title: "Businesses that build with FERKAR",
+    subtitle: "Shops, suppliers and organisations across Kurdistan and Iraq — from electrical trading to education and civil society.",
+    seeAll: "See our work",
+  },
+
   // Contact
   contact: {
     title: "Get in Touch",
